@@ -18,5 +18,13 @@ steps:
 - script: |
     npm install -g @angular/cli
     npm install
-    ng build --prod
   displayName: 'npm install and build'
+- script: 'npm run build-prod'
+  displayName: 'Build Angular app'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'dist/amazon/browser'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+  displayName: 'Publish build artifacts'
